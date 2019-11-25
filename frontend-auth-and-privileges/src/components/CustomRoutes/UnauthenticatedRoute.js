@@ -13,7 +13,7 @@ export default function UnauthenticatedRoute({
         !appProps.isAuthenticated ? (
           <C {...props} {...appProps} />
         ) : (
-          <Redirect to="/" />
+          <Redirect to="/dashboard" />
         )
       }
     />

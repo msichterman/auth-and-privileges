@@ -13,7 +13,7 @@ import { NavLink as Link, useHistory } from "react-router-dom";
 import "./AppNavbar.css";
 
 export default function AppNavbar({ authProps }) {
-  // let history = useHistory();
+  let history = useHistory();
 
   const { isAuthenticated, userHasAuthenticated } = authProps;
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +30,7 @@ export default function AppNavbar({ authProps }) {
     // setUser({});
 
     // Sends the application to the login page
-    // history.push("/login");
+    history.push("/login");
   }
 
   return (
