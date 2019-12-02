@@ -1,13 +1,13 @@
-package com.example.springbootauthandprivileges;
+package com.springbootauthandprivilege;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootAuthAndPrivilegesApplication {
+public class SpringBootAuthAndPrivilegeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootAuthAndPrivilegesApplication.class, args);
+		SpringApplication.run(SpringBootAuthAndPrivilegeApplication.class, args);
 	}
 
 }

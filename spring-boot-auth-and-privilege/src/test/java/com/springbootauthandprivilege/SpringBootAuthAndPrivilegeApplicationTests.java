@@ -1,10 +1,10 @@
-package com.example.springbootauthandprivileges;
+package com.springbootauthandprivilege;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringBootAuthAndPrivilegesApplicationTests {
+class SpringBootAuthAndPrivilegeApplicationTests {
 
 	@Test
 	void contextLoads() {
