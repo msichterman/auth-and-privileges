@@ -35,8 +35,8 @@ export default function AppNavbar({ authProps }) {
 
   return (
     <div>
-      <Navbar color="light" light expand="sm" className="mb-5">
-        <NavbarBrand tag={Link} exact to="/" className="text-secondary">
+      <Navbar color="light" light expand="sm">
+        <NavbarBrand tag={Link} exact to="/" className="text-dark">
           Auth {"&"} User Privileges
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
