@@ -2,8 +2,8 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 // Custom Routes
-import AuthenticatedRoute from "./components/CustomRoutes/AuthenticatedRoute";
-import UnauthenticatedRoute from "./components/CustomRoutes/UnauthenticatedRoute";
+import AuthenticatedRoute from "./utils/CustomRoutes/AuthenticatedRoute";
+import UnauthenticatedRoute from "./utils/CustomRoutes/UnauthenticatedRoute";
 
 // Unauthenticated Routes
 import Home from "./containers/Home/Home";

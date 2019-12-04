@@ -12,7 +12,7 @@ export default function Signup(appProps) {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { userHasAuthenticated } = appProps;
+  // const { userHasAuthenticated } = appProps;
 
   async function handleSubmit(event) {
     event.preventDefault();

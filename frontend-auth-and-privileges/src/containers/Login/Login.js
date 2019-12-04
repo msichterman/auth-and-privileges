@@ -1,11 +1,20 @@
-import React, { useState } from "react";
-import { Container, Col, Form, FormGroup, Label, Input } from "reactstrap";
+import React, { useState, useRef, useEffect } from "react";
+import {
+  Container,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Alert
+} from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import LoaderButton from "../../components/LoaderButton/LoaderButton";
 
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
+import { usePrevious } from "../../utils/custom-hooks";
 
 import "./Login.css";
 
@@ -13,14 +22,44 @@ export default function Login(appProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [msg, setMsg] = useState(null);
 
   // Maps Redux store state to props
-  const login = useSelector(state => state.login);
-  const clearErrors = useSelector(state => state.clearErrors);
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const error = useSelector(state => state.error);
 
-  // const { userHasAuthenticated } = appProps;
+  // Allows us to use the store's dispatch
+  const dispatch = useDispatch();
 
-  async function handleSubmit(event) {
+  // Gets the previous error
+  const prevError = usePrevious(error);
+
+  // componentDidUpdate
+  const mounted = useRef();
+
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    } else {
+      // componentDidUpdate logic
+      if (error !== prevError) {
+        // Check for login error
+        if (error.id === "LOGIN_FAIL") {
+          setMsg(error.msg.msg);
+          setIsLoading(false);
+        } else {
+          setMsg(null);
+        }
+      }
+
+      // If authenticated, close modal
+      if (isAuthenticated) {
+        dispatch(clearErrors());
+      }
+    }
+  });
+
+  function handleSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
 
@@ -30,7 +69,7 @@ export default function Login(appProps) {
     };
 
     // Attempt to login
-    login(user);
+    dispatch(login(user));
   }
 
   return (
@@ -62,6 +101,7 @@ export default function Login(appProps) {
                 onChange={e => setPassword(e.target.value)}
               />
             </FormGroup>
+            {msg ? <Alert color="danger">{msg}</Alert> : null}
             <LoaderButton
               block
               type="submit"
