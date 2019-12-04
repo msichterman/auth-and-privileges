@@ -8,9 +8,11 @@ import UnauthenticatedRoute from "./components/CustomRoutes/UnauthenticatedRoute
 // Unauthenticated Routes
 import Home from "./containers/Home/Home";
 import Login from "./containers/Login/Login";
+import Signup from "./containers/Signup/Signup";
 
 // Authenticated Routes
 import Dashboard from "./containers/Dashboard/Dashboard";
+import Products from "./containers/Products/Products";
 
 // No Route Found
 import NotFound from "./containers/NotFound/NotFound";
@@ -31,11 +33,23 @@ export default function Routes({ appProps }) {
         component={Login}
         appProps={appProps}
       />
+      <UnauthenticatedRoute
+        path="/signup"
+        exact
+        component={Signup}
+        appProps={appProps}
+      />
       {/* Must be authenticated to access these routes */}
       <AuthenticatedRoute
         path="/dashboard"
         exact
         component={Dashboard}
+        appProps={appProps}
+      />
+      <AuthenticatedRoute
+        path="/products"
+        exact
+        component={Products}
         appProps={appProps}
       />
       {/* Finally, catch all unmatched routes */}

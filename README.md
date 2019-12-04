@@ -1,2 +1,3 @@
 # auth-and-privileges
-A web application that will integrate basic security protocols such as authorization, authentication, and user privileges.
+
+A web application that integrates basic security protocols such as authentication, authorization, and user privileges.

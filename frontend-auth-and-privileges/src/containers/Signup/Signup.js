@@ -3,9 +3,11 @@ import { Container, Col, Form, FormGroup, Label, Input } from "reactstrap";
 
 import LoaderButton from "../../components/LoaderButton/LoaderButton";
 
-import "./Login.css";
+import "./Signup.css";
 
-export default function Login(appProps) {
+export default function Signup(appProps) {
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -14,10 +16,14 @@ export default function Login(appProps) {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
     setIsLoading(true);
+
     try {
-      // const user = await Auth.signIn(email, password);
-      userHasAuthenticated(true);
+      //await Auth.signUp(fields.email, fields.confirmationCode);
+      // await Auth.signIn(fields.email, fields.password);
+
+      appProps.userHasAuthenticated(true);
     } catch (e) {
       alert(e.message);
       setIsLoading(false);
@@ -26,14 +32,38 @@ export default function Login(appProps) {
 
   return (
     <Container>
-      <div id="login-container" className="mt-5">
-        <h2>Login</h2>
+      <div id="signup-container" className="mt-5">
+        <h2>Sign Up!</h2>
         <Form className="form text-left" onSubmit={handleSubmit}>
+          <Col>
+            <FormGroup>
+              <Label for="firstname">First Name</Label>
+              <Input
+                autoFocus
+                type="text"
+                id="firstname"
+                placeholder="First"
+                value={firstname}
+                onChange={e => setFirstname(e.target.value)}
+              />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label for="lastname">Last Name</Label>
+              <Input
+                type="text"
+                id="lastname"
+                placeholder="Last"
+                value={lastname}
+                onChange={e => setLastname(e.target.value)}
+              />
+            </FormGroup>
+          </Col>
           <Col>
             <FormGroup>
               <Label for="username">Username</Label>
               <Input
-                autoFocus
                 type="text"
                 id="username"
                 placeholder="username"
@@ -44,7 +74,7 @@ export default function Login(appProps) {
           </Col>
           <Col>
             <FormGroup>
-              <Label for="password">Password</Label>
+              <Label for="examplePassword">Password</Label>
               <Input
                 type="password"
                 id="password"
@@ -60,7 +90,7 @@ export default function Login(appProps) {
               size="lg"
               //   disabled={!validateForm(email, password)}
             >
-              Login
+              Sign Up
             </LoaderButton>
           </Col>
         </Form>

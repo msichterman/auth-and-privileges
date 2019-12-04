@@ -47,7 +47,8 @@ function App() {
         <AppNavbar
           authProps={{
             isAuthenticated,
-            userHasAuthenticated
+            userHasAuthenticated,
+            role
           }}
         />
         <Routes

@@ -1,0 +1,12 @@
+.breadcrumb-styling > ol {
+  background-color: #343a40 !important;
+}
+
+.breadcrumb-styling > ol > li > a {
+  color: #f8f9fa !important;
+}
+
+.breadcrumb-item.active {
+  color: #e43639 !important;
+  font-weight: bolder !important;
+}
