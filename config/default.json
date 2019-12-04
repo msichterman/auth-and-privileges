@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://msichterman:Huskers1!@auth-and-privileges-big8t.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "sl_myJwtSecret"
+}

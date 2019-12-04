@@ -11,6 +11,11 @@ function App() {
   // Is a user authenticated or not
   const [isAuthenticated, userHasAuthenticated] = useState(false);
 
+  // Current User Information
+  const [fullName, setFullName] = useState("");
+  const [role, setRole] = useState("");
+  const [salary, setSalary] = useState(0);
+
   useEffect(() => {
     onLoad();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -28,6 +33,11 @@ function App() {
       }
     }
 
+    setFullName("Matt Sichterman");
+    setRole("Sales Manager");
+    // setRole("Production Manager");
+    setSalary(100000);
+
     setIsAuthenticating(false);
   }
 
@@ -37,13 +47,20 @@ function App() {
         <AppNavbar
           authProps={{
             isAuthenticated,
-            userHasAuthenticated
+            userHasAuthenticated,
+            role
           }}
         />
         <Routes
           appProps={{
             isAuthenticated,
-            userHasAuthenticated
+            userHasAuthenticated,
+            fullName,
+            setFullName,
+            role,
+            setRole,
+            salary,
+            setSalary
           }}
         />
       </div>

@@ -1,0 +1,8 @@
+.navlink-style {
+  cursor: "pointer";
+}
+
+.navlink-active {
+  color: #e43639 !important;
+  font-weight: bolder;
+}

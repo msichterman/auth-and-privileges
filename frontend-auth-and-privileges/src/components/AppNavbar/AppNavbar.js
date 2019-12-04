@@ -35,19 +35,49 @@ export default function AppNavbar({ authProps }) {
 
   return (
     <div>
-      <Navbar color="light" light expand="sm" className="mb-5">
-        <NavbarBrand tag={Link} exact to="/" className="text-secondary">
+      <Navbar color="light" light expand="sm">
+        <NavbarBrand tag={Link} exact to="/" className="text-dark">
           Auth {"&"} User Privileges
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             {isAuthenticated ? (
-              <NavItem>
-                <NavLink onClick={handleLogout} style={{ cursor: "pointer" }}>
-                  Logout
-                </NavLink>
-              </NavItem>
+              <>
+                <NavItem>
+                  <NavLink
+                    tag={Link}
+                    exact
+                    to="/dashboard"
+                    activeClassName="navlink-active"
+                  >
+                    Dashboard
+                  </NavLink>
+                </NavItem>
+                {"  "}
+                <NavItem>
+                  <NavLink
+                    tag={Link}
+                    exact
+                    to="/products"
+                    activeClassName="navlink-active"
+                  >
+                    Products
+                  </NavLink>
+                </NavItem>
+                {"  "}
+                <NavItem>
+                  <NavLink
+                    tag={Link}
+                    onClick={handleLogout}
+                    to="/login"
+                    className="navlink-style"
+                    activeClassName="navlink-active"
+                  >
+                    Logout
+                  </NavLink>
+                </NavItem>
+              </>
             ) : (
               <>
                 <NavItem>
@@ -55,12 +85,19 @@ export default function AppNavbar({ authProps }) {
                     tag={Link}
                     exact
                     to="/login"
-                    activeStyle={{
-                      fontWeight: "bold",
-                      color: "#E41C38"
-                    }}
+                    activeClassName="navlink-active"
                   >
                     Login
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    tag={Link}
+                    exact
+                    to="/signup"
+                    activeClassName="navlink-active"
+                  >
+                    Sign Up
                   </NavLink>
                 </NavItem>
               </>
