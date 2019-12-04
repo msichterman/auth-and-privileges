@@ -58,7 +58,7 @@ router.post("/", (req, res) => {
 router.put("/", auth, (req, res) => {
   // TODO: Add checks for roles
   User.findOneAndUpdate(
-    { username: req.body.usrname },
+    { username: req.body.username },
     {
       $set: {
         role: req.body.role,

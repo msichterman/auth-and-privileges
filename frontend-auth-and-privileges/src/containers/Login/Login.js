@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Container, Col, Form, FormGroup, Label, Input } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
 
 import LoaderButton from "../../components/LoaderButton/LoaderButton";
+
+import { login } from "../../actions/authActions";
+import { clearErrors } from "../../actions/errorActions";
 
 import "./Login.css";
 
@@ -10,18 +14,23 @@ export default function Login(appProps) {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { userHasAuthenticated } = appProps;
+  // Maps Redux store state to props
+  const login = useSelector(state => state.login);
+  const clearErrors = useSelector(state => state.clearErrors);
+
+  // const { userHasAuthenticated } = appProps;
 
   async function handleSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
-    try {
-      // const user = await Auth.signIn(email, password);
-      userHasAuthenticated(true);
-    } catch (e) {
-      alert(e.message);
-      setIsLoading(false);
-    }
+
+    const user = {
+      username,
+      password
+    };
+
+    // Attempt to login
+    login(user);
   }
 
   return (
@@ -58,7 +67,7 @@ export default function Login(appProps) {
               type="submit"
               isLoading={isLoading}
               size="lg"
-              //   disabled={!validateForm(email, password)}
+              //   disabled={!validateForm(username, password)}
             >
               Login
             </LoaderButton>

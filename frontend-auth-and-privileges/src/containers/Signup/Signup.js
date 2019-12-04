@@ -20,8 +20,8 @@ export default function Signup(appProps) {
     setIsLoading(true);
 
     try {
-      //await Auth.signUp(fields.email, fields.confirmationCode);
-      // await Auth.signIn(fields.email, fields.password);
+      //await Auth.signUp(fields.username, fields.confirmationCode);
+      // await Auth.signIn(fields.username, fields.password);
 
       appProps.userHasAuthenticated(true);
     } catch (e) {
@@ -88,7 +88,7 @@ export default function Signup(appProps) {
               type="submit"
               isLoading={isLoading}
               size="lg"
-              //   disabled={!validateForm(email, password)}
+              //   disabled={!validateForm(username, password)}
             >
               Sign Up
             </LoaderButton>

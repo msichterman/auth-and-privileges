@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import AppNavbar from "./components/AppNavbar/AppNavbar";
 import Routes from "./Routes";
+import { Provider } from "react-redux";
+import store from "./store";
 
 import "./App.css";
 
