@@ -1,8 +1,21 @@
 spring:
-  jpa:
-    hibernate:
-      ddl-auto: update
+  application:
+    name: spring-boot-auth-and-prigilege
   datasource:
     url: jdbc:mysql://localhost:3336
     username: user
     password: password
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 2
+      minimumIdle: 1
+      connectionTestQuery: "SELECT 1"
+    jpa:
+      database: MYSQL
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+server:
+  port: 8443
+#  ssl:
+#    enabled: true
