@@ -1,32 +1,35 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const config = require('config');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
+const config = require("config");
+const jwt = require("jsonwebtoken");
 
 // User Model
-const User = require('../../models/User');
+const User = require("../../models/User");
 
 // @route   POST api/users
 // @desc    Register new user
 // @access  Public
-router.post('/', (req, res) => {
-  const { name, email, password } = req.body;
+router.post("/", (req, res) => {
+  const { firstname, lastname, role, salary, username, password } = req.body;
 
   // Simple Validation
-  if (!name || !email || !password) {
-    return res.status(400).json({ msg: 'Please enter all fields' });
+  if (!firstname || !lastname || !username || !password) {
+    return res.status(400).json({ msg: "Please enter all fields" });
   }
 
   // Check for existing user
-  User.findOne({ email }).then(user => {
+  User.findOne({ username }).then(user => {
     if (user) {
-      return res.status(400).json({ msg: 'User already exists' });
+      return res.status(400).json({ msg: "User already exists" });
     }
 
     const newUser = new User({
-      name,
-      email,
+      firstname,
+      lastname,
+      role,
+      salary,
+      username,
       password
     });
 
@@ -38,7 +41,7 @@ router.post('/', (req, res) => {
         newUser.save().then(user => {
           jwt.sign(
             { id: user.id },
-            config.get('jwtSecret'),
+            config.get("jwtSecret"),
             { expiresIn: 3600 },
             (err, token) => {
               if (err) throw err;
@@ -46,8 +49,11 @@ router.post('/', (req, res) => {
                 token,
                 user: {
                   id: user.id,
-                  name: user.name,
-                  email: user.email
+                  firstname: user.firstname,
+                  lastname: user.lastname,
+                  username: user.username,
+                  role: user.role,
+                  salary: user.salary
                 }
               });
             }
