@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import AppNavbar from "./components/AppNavbar/AppNavbar";
 
@@ -8,9 +8,9 @@ import { loadUser } from "./actions/authActions";
 
 import "./App.css";
 
-function App() {
+export default function App() {
   // Ensures that the onLoad function runs before the application is displayed
-  const [isAuthenticating, setIsAuthenticating] = useState(true);
+  const isAuthenticating = useSelector(state => state.auth.isAuthenticating);
 
   // Allows us to use the store's dispatch
   const dispatch = useDispatch();
@@ -22,8 +22,6 @@ function App() {
 
   function onLoad() {
     dispatch(loadUser());
-
-    setIsAuthenticating(false);
   }
 
   return (
@@ -35,5 +33,3 @@ function App() {
     )
   );
 }
-
-export default App;
