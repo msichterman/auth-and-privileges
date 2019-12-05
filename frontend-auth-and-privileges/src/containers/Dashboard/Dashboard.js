@@ -64,13 +64,19 @@ export default function Dashboard(appProps) {
           <div className="py-3 rounded toast-min">
             <Toast>
               <ToastHeader>Role</ToastHeader>
-              <ToastBody>{role}</ToastBody>
+              <ToastBody>
+                {role === "User" ? "Waiting for account confirmation..." : role}
+              </ToastBody>
             </Toast>
           </div>
           <div className="py-3 rounded toast-min">
             <Toast>
               <ToastHeader>Salary</ToastHeader>
-              <ToastBody>${salary}</ToastBody>
+              <ToastBody>
+                {salary === 0
+                  ? "Waiting for account confirmation..."
+                  : "$" + salary}
+              </ToastBody>
             </Toast>
           </div>
         </Row>
