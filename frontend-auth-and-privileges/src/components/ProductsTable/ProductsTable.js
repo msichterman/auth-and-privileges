@@ -16,7 +16,10 @@ export default function ProductsTable(props) {
       <Spinner color="dark" />
     </div>
   ) : (
-    <div className="mt-4 border-top border-bottom" id="table-border-width">
+    <div
+      className="mt-4 border-top border-bottom"
+      id="products-table-border-width"
+    >
       <h3 className="text-dark p-2 mb-0">Products</h3>
       <Table striped>
         <thead>

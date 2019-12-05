@@ -25,7 +25,7 @@ export default function Products() {
   }
 
   return (
-    <div className="border-top border-bottom" id="table-border-width">
+    <div id="table-border-width">
       <Jumbotron fluid className="bg-dark text-light">
         <Container fluid>
           <h1 className="display-5">Our Products</h1>
