@@ -59,30 +59,60 @@ npm run dev
 
 ## File Structure
 
-### public/
+    auth-and-privileges/
+    ├── ...
+    │
+    ├── config/                                 
+    │   └── default.json                                # Info such as MongoDB URI and JWT Secret
+    │
+    ├── frontend-auth-and-privileges/                   # The entire React frontend application
+    │   ├── ...
+    │   │
+    │   ├── public/                                     # Stores assets like images and fonts
+    │   │   ├── ...
+    │   │   └── index.html                              # The overall page template
+    │   │
+    │   └── src/
+    │       ├── index.js                                # The JavaScript entry point
+    │       ├── ...
+    │       ├── Routes.js                               # Defines all of the frontend routes                            
+    │       ├── store.js                                # Sets up the Redux store
+    │       │
+    │       ├── components/                             # Any component featured within a container
+    │       │   └── ...
+    │       │
+    │       ├── containers/                             # Makes up the pages
+    │       │   └── ...
+    │       │
+    │       ├── actions/                                # Redux actions
+    │       │   ├── ...
+    │       │   └── types.js                            # Defines all the types of actions
+    │       │
+    │       ├── reducers/                               # Redux reducers
+    │       │   ├── ...
+    │       │   └── index.js                            # Combines all of the reducers
+    │       │
+    │       └── utils/
+    │           ├── custom-hooks.js                     # Any custom hooks
+    │           │
+    │           └── CustomRoutes/                      # The custom route components that help with routing and redirects
+    │               └── ...
+    │
+    ├── middleware/                                     # Middleware for the APIs
+    │   └── ...
+    │
+    ├── models/                                         # MongoDB models defined by schemas
+    │   └── ...
+    │
+    ├── routes/
+    │   └── api/                                        # Defines ExpressJS API endpoints 
+    │       └── ...
+    │
+    └── server.js                                       # Defines backend MongoDB connection, routes, and port
 
-Assets, like images and fonts, should be placed directly within this folder.
-
-### src/
-
-This is where basically all of our react code is stored.
-
-#### components/
-
-All of the react components that simply serve as a component (or feature) within a container.
-
-#### containers/
-
-All of the containers and components that make up an entire page within our application.
-
-#### utils/
-
-All of the additional JavaScript files or helper functions that do not logically fit within a container or a component.
-
-### Routes.js
-
-Sets the routes for all of the containers within the application. The UnauthenticatedRoute and AuthenticatedRoute components are custom Route components to allow for the application to secure routes and allow certain routes only if a user is authenticated.
-
-## Additional Resources
-* [Serverless Stack](https://serverless-stack.com/#table-of-contents) helped with implementing AWS Amplify and includes valuable information about login/authentication, routing, and overall architecture.
+## References
+* [Serverless Stack](https://serverless-stack.com/#table-of-contents) helped with implementing the React frontend including functional components, hooks, authenticated routing and overall frontend architecture.
+* Brad Traversy's "Learn The MERN Stack" series on YouTube, which guided the development of the overall full-stack application.
+    * [Learn The MERN Stack - YouTube Series](https://www.youtube.com/playlist?list=PLillGF-RfqbbiTGgA77tGO426V3hRF9iE)
+    * ["MERN Shopping List" Application - GitHub Repository](https://github.com/bradtraversy/mern_shopping_list)
 
