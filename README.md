@@ -35,7 +35,7 @@ We created a web application that integrates basic security protocols such as au
 ## Getting Started
 In order to use the application locally, you'll need to do a few things first.
 
-1. Clone this repository and cd into the repository's directory
+1. Clone this repository and `cd` into the repository's directory
 ```
 git clone https://github.com/msichterman/auth-and-privileges.git && cd ./auth-and-privileges
 ```
@@ -46,7 +46,7 @@ npm install && npm run client-install
 ```
 or
 ```
-sudo npm install && npm run client-install
+sudo npm install && sudo npm run client-install
 ```
 
 3. Lastly, run the following command to get the project off the ground. This command will not only build your JS files, but it will also auto-compile your files on every file save. This allows for hot reloading on-save when the backend and/or frontend code is updated.
