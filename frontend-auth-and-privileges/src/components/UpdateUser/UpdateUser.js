@@ -18,8 +18,8 @@ export default function UpdateUser(props) {
     if (username) {
       params.username = username;
     }
-    if(updatedRole !== null) {
-      params.role = updatedRole
+    if (updatedRole !== null) {
+      params.role = updatedRole;
     }
     if (updatedSalary !== 0) {
       params.salary = updatedSalary;
@@ -34,13 +34,12 @@ export default function UpdateUser(props) {
     !loading && (
       <div className="bg-dark text-light p-5">
         <h2 className="mb-5">{props.heading}</h2>
-        <Form inline className="d-flex justify-content-around mb-5">
+        <Form inline className="d-flex justify-content-around mb-3">
           <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
             <Label for="username" className="mr-sm-2">
               Username:
             </Label>
             <Input
-              autoFocus
               type="text"
               id="username"
               placeholder="username"
