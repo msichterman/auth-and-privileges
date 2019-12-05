@@ -4,9 +4,6 @@ const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const auth = require("../../middleware/auth");
-const isAdmin = require("../../middleware/adminAuth");
-const isSalesManager = require("../../middleware/salesManagerAuth");
-const isProductManager = require("../../middleware/productManagerAuth");
 
 // User Model
 const User = require("../../models/User");

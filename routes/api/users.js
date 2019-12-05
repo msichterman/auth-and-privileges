@@ -3,38 +3,28 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
-const isAdmin = require("../../middleware/adminAuth");
-const isProductManager = require("../../middleware/productManagerAuth");
-const isSalesManager = require("../../middleware/salesManagerAuth");
+const auth = require("../../middleware/auth");
 
 // User Model
 const User = require("../../models/User");
 
 // GET ALL USERS
-router.get("/", isAdmin, (req, res) => {
-    User.find().then(users => {
-        return res.status(200).json(users);
-    }).catch(error => {
-        return res.status(200).json({msg: "Could not find users"});
-    });
-});
-
-// GET ALL PRODUCT EMPLOYEES
-router.get("/productemployees", isProductManager, (req, res) => {
-    User.find().where({role: 'Product Employee'}).then(users => {
-        return res.status(200).json(users);
-    }).catch(error => {
-        return res.status(400).json({msg: "Could not find users"});
-    });
-});
-
-// GET ALL SALES EMPLOYEES
-router.get("/salesemployees", isProductManager, (req, res) => {
-    User.find().where({role: 'Sales Employee'}).then(users => {
-        return res.status(200).json(users);
-    }).catch(error => {
-        return res.status(400).json({msg: "Could not find users"});
-    });
+router.get("/", auth, (req, res) => {
+    let queryBy = {};
+    if (req.user.role === "Product Manager") {
+        queryBy.role = "Product Employee"
+    } else if (req.user.role === "Sales Manager") {
+        queryBy.role = "Sales Employee"
+    }
+    if (req.user.role === "Admin" || req.user.role === "Product Manager" || req.user.role === "Sales Manager") {
+        User.find().where(queryBy).then(users => {
+            return res.status(200).json(users);
+        }).catch(error => {
+            return res.status(400).json({msg: "No Employees to View."});
+        });
+    } else {
+        return res.status(400).json({msg: "You are not a Manager."});
+    }
 });
 
 
@@ -100,7 +90,7 @@ router.post("/", (req, res) => {
 // @desc    Update A User's Role & Salary (as an Admin?)
 // @access  Private
 // UPDATE
-router.put("/", isAdmin, (req, res) => {
+router.put("/", auth, (req, res) => {
     const updatedFields = {};
     if (!req.body.username) {
         return res.status(400).json({msg: "Must provide username."})
@@ -111,83 +101,35 @@ router.put("/", isAdmin, (req, res) => {
     if (req.body.salary) {
         updatedFields.salary = req.body.salary
     }
-    User.findOneAndUpdate(
-        {username: req.body.username},
-        {
-            $set: {
-                role: req.body.role,
-                salary: req.body.salary
-            }
-        },
-        // new option returns updated object
-        {new: true, useFindAndModify: false}
-    )
-        .select("-password")
-        .then(user => {
-          if(user){
-            res.json(user);
-          } else {
-            res.json({msg: "Couldn't find user."});
-          }
-        });
-});
-
-router.put("/productemployee", isProductManager, (req, res) => {
-    const updatedFields = {};
-    if (!req.body.username) {
-        return res.status(400).json({msg: "Must provide username."})
+    let queryString = {username: req.body.username};
+    if (req.user.role === "Product Manager") {
+        queryString.role = "Product Employee";
+    } else if (req.user.role === "Sales Manager") {
+        queryString.role = "Sales Employee";
     }
-    if (req.body.role) {
-        updatedFields.role = req.body.role;
+    if (req.user.role === "Admin" || req.user.role === "Product Manager" || req.user.role === "Sales Manager") {
+        User.findOneAndUpdate(
+            queryString,
+            {
+                $set: {
+                    role: req.body.role,
+                    salary: req.body.salary
+                }
+            },
+            // new option returns updated object
+            {new: true, useFindAndModify: false}
+        )
+            .select("-password")
+            .then(user => {
+                if (user) {
+                    res.json(user);
+                } else {
+                    res.json({msg: "Couldn't find user."});
+                }
+            });
+    } else {
+        return res.status(400).json({msg: "Not authorized."});
     }
-    if (req.body.salary) {
-        updatedFields.salary = req.body.salary
-    }
-    User.findOneAndUpdate(
-        {username: req.body.username, role: "Product Employee"},
-        {
-            $set: updatedFields
-        },
-        // new option returns updated object
-        {new: true, useFindAndModify: false}
-    )
-        .select("-password")
-        .then(user => {
-            if(user){
-              res.json(user);
-            } else {
-              res.json({msg: "Couldn't find user."})
-            }
-        });
-});
-
-router.put("/salesemployee", isSalesManager, (req, res) => {
-    const updatedFields = {};
-    if (!req.body.username) {
-        return res.status(400).json({msg: "Must provide username."})
-    }
-    if (req.body.role) {
-        updatedFields.role = req.body.role;
-    }
-    if (req.body.salary) {
-        updatedFields.salary = req.body.salary
-    }
-    User.findOneAndUpdate(
-        {username: req.body.username, role: "Sales Employee"},
-        {
-            $set: updatedFields
-        },
-        // new option returns updated object
-        {new: true, useFindAndModify: false}
-    )
-        .select("-password")
-        .then(user => {
-          if(user){
-            res.json(user);
-          } else {
-            res.json({msg: "Couldn't find user."});
-          }
-        });
 });
 
 module.exports = router;
