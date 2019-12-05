@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ProductsTable from "../../components/ProductsTable/ProductsTable";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../actions/authActions";
+import { getProducts } from "../../actions/dataActions";
 import UpdateProduct from "../../components/UpdateProduct/UpdateProduct";
 import "./Products.css";
 
@@ -28,7 +28,7 @@ export default function Products() {
       ) : role === "Production Manager" ? (
         <UpdateProduct heading="Update Product Quantity" />
       ) : role === "Sales Manager" ? (
-        <UpdateProduct heading="Update Product Quantity" />
+        <UpdateProduct heading="Update Product Price" />
       ) : (
         <></>
       )}

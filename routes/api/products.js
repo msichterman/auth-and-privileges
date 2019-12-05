@@ -43,13 +43,6 @@ router.post("/", auth, (req, res) => {
 // @access  Private
 router.put("/", auth, (req, res) => {
   let updatedParams = {};
-  if (req.body.name) {
-    if (req.user.role === "Admin") {
-      updatedParams.name = req.body.name;
-    } else {
-      return res.status(400).json({ msg: "Not authorized to change name." });
-    }
-  }
   if (req.body.price) {
     if (req.user.role === "Admin" || req.user.role === "Sales Manager") {
       updatedParams.price = req.body.price;

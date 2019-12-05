@@ -1,8 +1,4 @@
 import {
-    GET_USERS_LOADED,
-    GET_USERS_LOADING,
-    GET_PRODUCTS_LOADED,
-    GET_PRODUCTS_LOADING,
     USER_LOADED,
     USER_LOADING,
     AUTH_ERROR,
@@ -18,23 +14,10 @@ const initialState = {
     isAuthenticated: null,
     isLoading: false,
     user: null,
-    users: [],
-    products: []
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case GET_USERS_LOADING:
-            return {
-                ...state,
-                loading: true
-            };
-        case GET_USERS_LOADED:
-            return {
-                ...state,
-                loading: false,
-                users: action.payload
-            };
         case USER_LOADING:
             return {
                 ...state,
@@ -46,17 +29,6 @@ export default function (state = initialState, action) {
                 isAuthenticated: true,
                 isLoading: false,
                 user: action.payload
-            };
-        case GET_PRODUCTS_LOADING:
-            return {
-                ...state,
-                loading: true,
-            };
-        case GET_PRODUCTS_LOADED:
-            return {
-                ...state,
-                loading: false,
-                products: action.payload
             };
         case LOGIN_SUCCESS:
         case SIGNUP_SUCCESS:

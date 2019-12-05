@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+// import { updateProduct } from '../../actions/dataActions';
 
-import updateProduct from "../../containers/Products/Products";
 
 import "./UpdateProduct.css";
 
@@ -10,10 +10,8 @@ export default function UpdateProduct(props) {
   const [updatedPrice, updatePrice] = useState(0.0);
   const [updatedQuanity, updateQuanity] = useState(0);
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  async function handleSubmit(event) {
-    updateProduct(name, updatedPrice, updatedQuanity);
+  async function handleSubmit() {
+    // updateProduct(name, updatedPrice, updatedQuanity);
   }
 
   return (
@@ -65,7 +63,11 @@ export default function UpdateProduct(props) {
           />
         </FormGroup>
 
-        <Button id="red-button">Update</Button>
+        <Button
+            id="red-button"
+        >
+          Update
+        </Button>
       </Form>
     </div>
   );

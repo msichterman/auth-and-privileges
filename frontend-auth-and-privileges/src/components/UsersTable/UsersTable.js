@@ -6,8 +6,8 @@ import "./UsersTable.css";
 
 export default function UsersTable(props) {
   // Maps Redux store state to props
-  const loading = useSelector(state => state.auth.loading);
-  const users = useSelector(state => state.auth.users);
+  const loading = useSelector(state => state.data.loading);
+  const users = useSelector(state => state.data.users);
   const error = useSelector(state => state.error);
 
   return loading ? (

@@ -9,7 +9,7 @@ export default function ProductsTable(props) {
 
     // Maps Redux store state to props
     const loading = useSelector(state => state.auth.loading);
-    const products = useSelector(state => state.auth.products);
+    const products = useSelector(state => state.data.products);
 
     return loading ? (
         <div>
