@@ -5,7 +5,9 @@ import {
     GET_USERS_LOADED,
     GET_USERS_LOADING,
     GET_PRODUCTS_LOADED,
-    GET_PRODUCTS_LOADING
+    GET_PRODUCTS_LOADING,
+    UPDATE_USER_EDITING,
+    UPDATE_PRODUCT_EDITING
 } from "./types";
 
 // Get Users Employees
@@ -58,6 +60,14 @@ export const updateProduct = (params) => (dispatch, getState) => {
         .catch(err =>
             dispatch(returnErrors(err.response.data, err.response.status))
         );
+};
+
+export const updateUserEditing = (username) => (dispatch) => {
+    dispatch({ type: UPDATE_USER_EDITING, payload: username})
+};
+
+export const updateProductEditing = (product) => (dispatch) => {
+    dispatch({ type: UPDATE_PRODUCT_EDITING, payload: product})
 };
 
 export const tokenConfig = getState => {

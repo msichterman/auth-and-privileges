@@ -3,12 +3,16 @@ import {
     GET_USERS_LOADING,
     GET_PRODUCTS_LOADED,
     GET_PRODUCTS_LOADING,
+    UPDATE_USER_EDITING,
+    UPDATE_PRODUCT_EDITING
 } from "../actions/types";
 
 const initialState = {
     loading: false,
     users: [],
-    products: []
+    products: [],
+    userEditing: null,
+    productEditing: null
 };
 
 export default function (state = initialState, action) {
@@ -34,6 +38,16 @@ export default function (state = initialState, action) {
                 ...state,
                 loading: false,
                 products: action.payload
+            };
+        case UPDATE_USER_EDITING:
+            return {
+                ...state,
+                userEditing: action.payload
+            };
+        case UPDATE_PRODUCT_EDITING:
+            return {
+                ...state,
+                productEditing: action.payload
             };
         default:
             return state;

@@ -9,7 +9,6 @@ import {
 } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import UsersTable from "../../components/UsersTable/UsersTable";
-import UpdateUser from "../../components/UpdateUser/UpdateUser";
 import { getUsers } from "../../actions/dataActions";
 import "./Dashboard.css";
 
@@ -89,15 +88,6 @@ export default function Dashboard() {
           <UsersTable heading="Manage Production Employees" />
         ) : role === "Sales Manager" ? (
           <UsersTable heading="Manage Sales Employees" />
-        ) : (
-          <></>
-        )}
-        {role === "Admin" ? (
-          <UpdateUser heading="Update Any User" />
-        ) : role === "Production Manager" ? (
-          <UpdateUser heading="Update a Production Employee" />
-        ) : role === "Sales Manager" ? (
-          <UpdateUser heading="Update a Sales Employee" />
         ) : (
           <></>
         )}

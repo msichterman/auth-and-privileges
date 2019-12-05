@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { Jumbotron, Container } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import ProductsTable from "../../components/ProductsTable/ProductsTable";
-import UpdateProduct from "../../components/UpdateProduct/UpdateProduct";
 
 import { getProducts } from "../../actions/authActions";
 
@@ -11,7 +10,6 @@ import "./Products.css";
 
 export default function Products() {
   // Maps Redux store state to props
-  const role = useSelector(state => state.auth.user.role);
 
   // Allows us to use the store's dispatch
   const dispatch = useDispatch();
@@ -36,15 +34,6 @@ export default function Products() {
         </Container>
       </Jumbotron>
       <ProductsTable />
-      {role === "Admin" ? (
-        <UpdateProduct heading="Update Product Price & Quantity" />
-      ) : role === "Production Manager" ? (
-        <UpdateProduct heading="Update Product Quantity" />
-      ) : role === "Sales Manager" ? (
-        <UpdateProduct heading="Update Product Price" />
-      ) : (
-        <></>
-      )}
     </div>
   );
 }
