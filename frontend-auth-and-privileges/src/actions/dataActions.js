@@ -42,6 +42,15 @@ export const getProducts = () => (dispatch, getState) => {
         );
 };
 
+export const updateProduct = (params) => (dispatch, getState) => {
+    axios
+        .put("/api/products", params, tokenConfig(getState))
+        .then(res => dispatch(getProducts()))
+        .catch(err =>
+            dispatch(returnErrors(err.response.data, err.response.status))
+        );
+};
+
 export const tokenConfig = getState => {
     // Get token from localStorage
     const token = getState().auth.token;

@@ -1,17 +1,30 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-// import { updateProduct } from '../../actions/dataActions';
+import { updateProduct } from '../../actions/dataActions';
 
 
 import "./UpdateProduct.css";
+import {useDispatch} from "react-redux";
 
 export default function UpdateProduct(props) {
   const [name, setName] = useState(null);
   const [updatedPrice, updatePrice] = useState(0.0);
   const [updatedQuanity, updateQuanity] = useState(0);
 
+  const dispatch = useDispatch();
+
   async function handleSubmit() {
-    // updateProduct(name, updatedPrice, updatedQuanity);
+    let params = {};
+    if(name) {
+      params.name = name
+    }
+    if(updatedPrice != 0) {
+      params.price = updatedPrice
+    }
+    if(updatedQuanity != 0) {
+      params.quantity = updatedQuanity
+    }
+    dispatch(updateProduct(params))
   }
 
   return (
@@ -20,7 +33,6 @@ export default function UpdateProduct(props) {
       <Form
         inline
         className="d-flex justify-content-around"
-        onSubmit={handleSubmit}
       >
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <Label for="name" className="mr-sm-2">
@@ -65,6 +77,7 @@ export default function UpdateProduct(props) {
 
         <Button
             id="red-button"
+            onClick={() => handleSubmit()}
         >
           Update
         </Button>
