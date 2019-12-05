@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Jumbotron,
   Container,
@@ -7,56 +7,83 @@ import {
   ToastBody,
   ToastHeader
 } from "reactstrap";
+import { useSelector, useDispatch } from "react-redux";
 
 import UsersTable from "../../components/UsersTable/UsersTable";
+
+import { getUsers } from "../../actions/authActions";
+import { clearErrors } from "../../actions/errorActions";
 
 import "./Dashboard.css";
 
 export default function Dashboard(appProps) {
-  // const { salary, fullName, role } = appProps;
+  const [isPopulating, setIsPopulating] = useState(true);
+
+  // Maps Redux store state to props
+  const salary = useSelector(state => state.auth.user.salary);
+  const firstname = useSelector(state => state.auth.user.firstname);
+  const lastname = useSelector(state => state.auth.user.lastname);
+  const role = useSelector(state => state.auth.user.role);
+
+  // Allows us to use the store's dispatch
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    onLoad();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function onLoad() {
+    dispatch(getUsers());
+
+    setIsPopulating(false);
+  }
 
   return (
-    <div>
-      <Jumbotron fluid className="bg-dark text-light">
-        <Container fluid>
-          <h1 className="display-5">Welcome to your dashboard!</h1>
-          <p className="lead">
-            See your information below including name, role and current salary.
-          </p>
-          <p className="font-weight-lighter">
-            <small>Navigate using the navigation links above!</small>
-          </p>
-        </Container>
-      </Jumbotron>
-      <Row className="d-flex justify-content-around">
-        <div className="py-3 rounded toast-min">
-          <Toast>
-            <ToastHeader>Name</ToastHeader>
-            <ToastBody>{}</ToastBody>
-          </Toast>
-        </div>
-        <div className="py-3 rounded toast-min">
-          <Toast>
-            <ToastHeader>Role</ToastHeader>
-            <ToastBody>{}</ToastBody>
-          </Toast>
-        </div>
-        <div className="py-3 rounded toast-min">
-          <Toast>
-            <ToastHeader>Salary</ToastHeader>
-            <ToastBody>${}</ToastBody>
-          </Toast>
-        </div>
-      </Row>
-      {/* {role === "Admin" ? (
-        <UsersTable heading="Manage All Users" />
-      ) : role === "Production Manager" ? (
-        <UsersTable heading="Manage All Production Employees" />
-      ) : role === "Sales Manager" ? (
-        <UsersTable heading="Manage All Sales Employees" />
-      ) : (
-        <></>
-      )} */}
-    </div>
+    !isPopulating && (
+      <div>
+        <Jumbotron fluid className="bg-dark text-light">
+          <Container fluid>
+            <h1 className="display-5">Welcome to your dashboard!</h1>
+            <p className="lead">
+              See your information below including name, role and current
+              salary.
+            </p>
+            <p className="font-weight-lighter">
+              <small>Navigate using the navigation links above!</small>
+            </p>
+          </Container>
+        </Jumbotron>
+        <Row className="d-flex justify-content-around">
+          <div className="py-3 rounded toast-min">
+            <Toast>
+              <ToastHeader>Name</ToastHeader>
+              <ToastBody>{firstname + " " + lastname}</ToastBody>
+            </Toast>
+          </div>
+          <div className="py-3 rounded toast-min">
+            <Toast>
+              <ToastHeader>Role</ToastHeader>
+              <ToastBody>{role}</ToastBody>
+            </Toast>
+          </div>
+          <div className="py-3 rounded toast-min">
+            <Toast>
+              <ToastHeader>Salary</ToastHeader>
+              <ToastBody>${salary}</ToastBody>
+            </Toast>
+          </div>
+        </Row>
+        {role === "Admin" ? (
+          <UsersTable heading="Manage All Users" />
+        ) : role === "Production Manager" ? (
+          <UsersTable heading="Manage All Production Employees" />
+        ) : role === "Sales Manager" ? (
+          <UsersTable heading="Manage All Sales Employees" />
+        ) : (
+          <></>
+        )}
+      </div>
+    )
   );
 }

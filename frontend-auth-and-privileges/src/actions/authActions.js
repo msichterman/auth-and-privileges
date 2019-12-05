@@ -2,6 +2,8 @@ import axios from "axios";
 import { returnErrors } from "./errorActions";
 
 import {
+  GET_USERS_LOADED,
+  GET_USERS_LOADING,
   USER_LOADED,
   USER_LOADING,
   AUTH_ERROR,
@@ -11,6 +13,23 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_FAIL
 } from "./types";
+
+// Get Users Employees
+export const getUsers = () => (dispatch, getState) => {
+  // Get Users Loading
+  dispatch({ type: GET_USERS_LOADING });
+  axios
+    .get("/api/users", tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: GET_USERS_LOADED,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
 
 // Check token & load user
 export const loadUser = () => (dispatch, getState) => {
@@ -67,7 +86,6 @@ export const signup = ({
 };
 
 // Login User
-
 export const login = ({ username, password }) => dispatch => {
   // Headers
   const config = {

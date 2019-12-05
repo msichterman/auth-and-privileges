@@ -1,4 +1,6 @@
 import {
+  GET_USERS_LOADED,
+  GET_USERS_LOADING,
   USER_LOADED,
   USER_LOADING,
   AUTH_ERROR,
@@ -13,11 +15,23 @@ const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
   isLoading: false,
-  user: null
+  user: null,
+  users: []
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case GET_USERS_LOADING:
+      return {
+        ...state,
+        loading: true
+      };
+    case GET_USERS_LOADED:
+      return {
+        ...state,
+        loading: false,
+        users: action.payload
+      };
     case USER_LOADING:
       return {
         ...state,

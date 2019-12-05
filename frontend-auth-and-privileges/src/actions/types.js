@@ -16,6 +16,8 @@ export const LOGOUT_FAIL = "LOGOUT_FAIL";
 // User Types
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAIL = "SIGNUP_FAIL";
+export const GET_USERS_LOADING = "GET_USERS_LOADING";
+export const GET_USERS_LOADED = "GET_USERS_LOADED";
 export const UPDATE_USER = "UPDATE_USER";
 
 // Error Types

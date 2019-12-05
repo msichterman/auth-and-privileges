@@ -1,46 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Table, Spinner } from "reactstrap";
+import { useSelector } from "react-redux";
 
 import "./UsersTable.css";
 
 export default function UsersTable(props) {
   const [usersLoading, setUsersLoading] = useState(true);
 
-  useEffect(() => {
-    onLoad();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // Maps Redux store state to props
+  const loading = useSelector(state => state.auth.loading);
+  const users = useSelector(state => state.auth.users);
+  const error = useSelector(state => state.error);
 
-  async function onLoad() {
-    try {
-      //const users = await getAllUsers();
-      //const filteredUsers = filterUsers(users);
-      setUsersLoading(false);
-    } catch (e) {
-      alert("No users found.");
-    }
-  }
-
-  // TEMPORARY
-  // Will need to be a list of user objects
-  const filteredUsers = [];
-
-  // Filter the users that should be shown
-  const filterUsers = users => {
-    if (props.role === "Admin") {
-      return users;
-    } else if (props.role === "Production Manager") {
-      return users.filter(user => {
-        return user.role === "Production Employee";
-      });
-    } else if (props.role === "Sales Manager") {
-      return users.filter(user => {
-        return user.role === "Sales Employee";
-      });
-    }
-  };
-
-  return usersLoading ? (
+  return loading ? (
     <div>
       <Spinner color="dark" />
     </div>
@@ -50,22 +22,20 @@ export default function UsersTable(props) {
       <Table striped>
         <thead>
           <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Name</th>
             <th>Username</th>
             <th>Role</th>
+            <th>Salary</th>
           </tr>
         </thead>
         <tbody>
-          {filteredUsers.map((user, index) => {
+          {users.map(user => {
             return (
               <tr>
-                <td>{index}</td>
-                <td>{user.firstName}</td>
-                <td>{user.lastName}</td>
+                <td>{user.firstname + " " + user.lastname}</td>
                 <td>{user.username}</td>
                 <td>{user.role}</td>
+                <td>${user.salary}</td>
               </tr>
             );
           })}
