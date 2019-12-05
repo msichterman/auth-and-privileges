@@ -8,13 +8,10 @@ import {
   ToastHeader
 } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
-
 import UsersTable from "../../components/UsersTable/UsersTable";
 import UpdateUser from "../../components/UpdateUser/UpdateUser";
-
 import { getUsers } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
-
 import "./Dashboard.css";
 
 export default function Dashboard() {

@@ -1,66 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Table } from "reactstrap";
+import ProductsTable from "../../components/ProductsTable/ProductsTable";
 import { useDispatch, useSelector } from "react-redux";
-
+import { getProducts } from "../../actions/authActions";
 import UpdateProduct from "../../components/UpdateProduct/UpdateProduct";
-
 import "./Products.css";
 
-export default function Products(props) {
-  const [productsLoading, setProductsLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-
+export default function Products() {
   // Maps Redux store state to props
   const role = useSelector(state => state.auth.user.role);
-  const error = useSelector(state => state.error);
 
   // Allows us to use the store's dispatch
   const dispatch = useDispatch();
 
   useEffect(() => {
     onLoad();
-  }, [products]);
+  }, []);
 
   async function onLoad() {
-    try {
-      // Needs API
-      //const users = await getProducts();
-      setProductsLoading(false);
-    } catch (e) {
-      alert("No products found.");
-    }
-  }
-
-  // Needs API
-  async function updateProduct(id, price, quanity) {
-    price = price || null;
-    quanity = quanity || null;
-    await updateProduct();
+    dispatch(getProducts());
   }
 
   return (
     <div className="mt-4 border-top border-bottom" id="table-border-width">
-      <h1 className="text-dark p-2 mb-0">Products</h1>
-      <Table striped>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Quanity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map(product => {
-            return (
-              <tr>
-                <td>{product.name}</td>
-                <td>${product.price}</td>
-                <td>{product.quanity}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      <ProductsTable />
       {role === "Admin" ? (
         <UpdateProduct heading="Update Product Price & Quantity" />
       ) : role === "Production Manager" ? (
