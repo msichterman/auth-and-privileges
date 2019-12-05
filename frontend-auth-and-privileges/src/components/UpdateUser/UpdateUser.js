@@ -9,7 +9,7 @@ export default function UpdateUser(props) {
   const [updatedRole, updateRole] = useState(null);
   const [updatedSalary, updateSalary] = useState(0.0);
 
-  const loading = useSelector(state => state.auth.loading);
+  const loading = useSelector(state => state.data.loading);
 
   async function handleSubmit(event) {
     // dispatch(updateUser(username, updatedRole, updatedSalary));
