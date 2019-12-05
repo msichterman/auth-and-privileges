@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table, Spinner } from "reactstrap";
 import { useSelector } from "react-redux";
 
 import "./ProductsTable.css";
 
 export default function ProductsTable(props) {
-  const [productsLoading, setProductsLoading] = useState(true);
-
   // Maps Redux store state to props
   const loading = useSelector(state => state.data.loading);
   const products = useSelector(state => state.data.products);
