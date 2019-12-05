@@ -90,7 +90,15 @@ export default function Dashboard() {
         ) : (
           <></>
         )}
-        <UpdateUser />
+        {role === "Admin" ? (
+          <UpdateUser heading="Update Any User" />
+        ) : role === "Production Manager" ? (
+          <UpdateUser heading="Update a Production Employee" />
+        ) : role === "Sales Manager" ? (
+          <UpdateUser heading="Update a Sales Employee" />
+        ) : (
+          <></>
+        )}
       </div>
     )
   );
