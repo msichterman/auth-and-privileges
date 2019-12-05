@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./UpdateUser.css";
 import { updateUser } from "../../actions/dataActions";
@@ -12,30 +12,26 @@ export default function UpdateUser(props) {
 
   const dispatch = useDispatch();
   const loading = useSelector(state => state.data.loading);
-  const role = useSelector(state => state.auth.user.role);
 
   async function handleSubmit() {
     let params = {};
-    if(username) {
-      params.username = username
+    if (username) {
+      params.username = username;
     }
-    if(updatedRole !== 0) {
-      params.role = updatedRole
+    if (updatedRole !== 0) {
+      params.role = updatedRole;
     }
-    if(updatedSalary !== 0) {
-      params.salary = updatedSalary
+    if (updatedSalary !== 0) {
+      params.salary = updatedSalary;
     }
-    dispatch(updateUser(params))
+    dispatch(updateUser(params));
   }
 
   return (
     !loading && (
       <div className="bg-dark text-light p-5">
         <h2 className="mb-5">{props.heading}</h2>
-        <Form
-          inline
-          className="d-flex justify-content-around mb-5"
-        >
+        <Form inline className="d-flex justify-content-around mb-5">
           <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
             <Label for="username" className="mr-sm-2">
               Username:
@@ -75,10 +71,7 @@ export default function UpdateUser(props) {
             />
           </FormGroup>
 
-          <Button
-              id="red-update-button"
-              onClick={() => handleSubmit()}
-          >
+          <Button id="red-update-button" onClick={() => handleSubmit()}>
             Update
           </Button>
         </Form>
