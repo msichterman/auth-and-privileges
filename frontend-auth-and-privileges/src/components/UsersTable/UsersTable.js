@@ -42,10 +42,10 @@ export default function UsersTable(props) {
                 <tr>
                     <th>Name</th>
                     <th>Username</th>
-                    <th>Role</th>
-                    <th>Salary</th>
-                    <th></th>
-                    <th></th>
+                    <th className="inputCol">Role</th>
+                    <th className="inputCol">Salary</th>
+                    <th className="buttonCol"></th>
+                    <th className="buttonCol"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -55,8 +55,9 @@ export default function UsersTable(props) {
                             <td>{user.firstname + " " + user.lastname}</td>
                             <td>{user.username}</td>
                             {user.username === userEditing ? (
-                                <td>
+                                <td className="inputCol">
                                     <Input
+                                        className="input"
                                         type="text"
                                         id="role"
                                         placeholder={user.role}
@@ -64,15 +65,16 @@ export default function UsersTable(props) {
                                     />
                                 </td>
                             ) : (
-                                <td>
+                                <td className="inputCol">
                                     {user.role === "User"
                                         ? "Waiting for account confirmation..."
                                         : user.role}
                                 </td>
                             )}
                             {user.username === userEditing ? (
-                                <td>
+                                <td className="inputCol">
                                     <Input
+                                        className="input"
                                         type="text"
                                         id="salary"
                                         placeholder={user.salary}
@@ -80,7 +82,7 @@ export default function UsersTable(props) {
                                     />
                                 </td>
                             ) : (
-                                <td>
+                                <td className="inputCol">
                                     {user.salary === 0
                                         ? "Waiting for account confirmation..."
                                         : "$" + user.salary}
@@ -88,14 +90,14 @@ export default function UsersTable(props) {
                             )}
                             {user.username === userEditing ? (
                                 <>
-                                    <td>
-                                        <Button id="red-update-button"
+                                    <td className="buttonCol">
+                                        <Button id="red-update-button" className="button"
                                                 onClick={() => handleSubmit(user.username)}>
                                             Update
                                         </Button>
                                     </td>
-                                    <td>
-                                        <Button id="red-update-button"
+                                    <td className="buttonCol">
+                                        <Button id="red-update-button" className="button"
                                                 onClick={() => {
                                                   dispatch(updateUserEditing(null));
                                                   updateSalary(0);
@@ -107,9 +109,9 @@ export default function UsersTable(props) {
                                 </>
                             ) : (
                                 <>
-                                    <td></td>
-                                    <td>
-                                        <Button id="red-update-button"
+                                    <td className="buttonCol"></td>
+                                    <td className="buttonCol">
+                                        <Button id="red-update-button" className="button"
                                                 onClick={() => dispatch(updateUserEditing(user.username))}>
                                             Edit
                                         </Button>

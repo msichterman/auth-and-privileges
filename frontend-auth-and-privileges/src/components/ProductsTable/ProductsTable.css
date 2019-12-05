@@ -2,3 +2,22 @@
   border-width: 2px !important;
   border-color: #dee2e6 !important;
 }
+
+.buttonCol {
+  width: 150px;
+  padding: 5px;
+}
+
+.button {
+  width: 100%;
+}
+
+.inputCol {
+  width: 300px;
+  padding: 5px;
+}
+
+.input {
+  width: 100%;
+  text-align: center;
+}

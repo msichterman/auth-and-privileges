@@ -17,20 +17,20 @@ export default function ProductsTable(props) {
 
     const dispatch = useDispatch();
 
-  async function handleSubmit(name) {
-    let params = {};
-    params.name = name;
-    if (price !== 0) {
-      params.price = price;
+    async function handleSubmit(name) {
+        let params = {};
+        params.name = name;
+        if (price !== 0) {
+            params.price = price;
+        }
+        if (quantity !== 0) {
+            params.quantity = quantity;
+        }
+        dispatch(updateProduct(params));
+        dispatch(updateProductEditing(null));
+        updatePrice(0);
+        updateQuantity(0);
     }
-    if (quantity !== 0) {
-      params.quantity = quantity;
-    }
-    dispatch(updateProduct(params));
-    dispatch(updateProductEditing(null));
-    updatePrice(0);
-    updateQuantity(0);
-  }
 
     return loading ? (
         <div>
@@ -46,8 +46,8 @@ export default function ProductsTable(props) {
                 <thead>
                 <tr>
                     <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
+                    <th className="inputCol">Quantity</th>
+                    <th className="inputCol">Price</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -58,58 +58,69 @@ export default function ProductsTable(props) {
                         <tr key={product.name}>
                             <td>{product.name}</td>
                             {product.name === productEditing && (role === "Admin" || role === "Production Manager") ? (
-                                <td>
-                                  <Input
-                                      type="text"
-                                      id="quantity"
-                                      placeholder={product.quantity}
-                                      onChange={e => updateQuantity(e.target.value)}
-                                  />
+                                <td className="inputCol">
+                                    <Input
+                                        className="input"
+                                        type="text"
+                                        id="quantity"
+                                        placeholder={product.quantity}
+                                        onChange={e => updateQuantity(e.target.value)}
+                                    />
                                 </td>
                             ) : (
-                                <td>{product.quantity}</td>
+                                <td className="inputCol">{product.quantity}</td>
                             )}
                             {product.name === productEditing && (role === "Admin" || role === "Sales Manager") ? (
-                                <td>
-                                  <Input
-                                      type="text"
-                                      id="price"
-                                      placeholder={product.price}
-                                      onChange={e => updatePrice(e.target.value)}
-                                  />
+                                <td className="inputCol">
+                                    <Input
+                                        className="input"
+                                        type="text"
+                                        id="price"
+                                        placeholder={product.price}
+                                        onChange={e => updatePrice(e.target.value)}
+                                    />
                                 </td>
                             ) : (
-                                <td>{"$" + product.price}</td>
+                                <td className="inputCol">{"$" + product.price}</td>
                             )}
                             {product.name === productEditing ? (
                                 <>
-                                    <td>
-                                        <Button id="red-update-button"
-                                                onClick={() => handleSubmit(product.name)}>
+                                    <td className="buttonCol">
+                                        <Button
+                                            className="button"
+                                            id="red-update-button"
+                                            onClick={() => handleSubmit(product.name)}
+                                        >
                                             Update
                                         </Button>
                                     </td>
-                                    <td>
-                                        <Button id="red-update-button"
-                                                onClick={() => {
-                                                    dispatch(updateProductEditing(null));
-                                                    updatePrice(0);
-                                                    updateQuantity(0);
-                                                }}>
+                                    <td className="buttonCol">
+                                        <Button
+                                            className="button"
+                                            id="red-update-button"
+                                            onClick={() => {
+                                                dispatch(updateProductEditing(null));
+                                                updatePrice(0);
+                                                updateQuantity(0);
+                                            }}
+                                        >
                                             Cancel
                                         </Button>
                                     </td>
                                 </>
                             ) : (
                                 <>
-                                    <td></td>
-                                    <td>
-                                        <Button id="red-update-button"
-                                                onClick={() => {
-                                                  updateQuantity(0);
-                                                  updatePrice(0);
-                                                  dispatch(updateProductEditing(product.name));
-                                                }}>
+                                    <td className="buttonCol"></td>
+                                    <td className="buttonCol">
+                                        <Button
+                                            className="button"
+                                            id="red-update-button"
+                                            onClick={() => {
+                                                updateQuantity(0);
+                                                updatePrice(0);
+                                                dispatch(updateProductEditing(product.name));
+                                            }}
+                                        >
                                             Edit
                                         </Button>
                                     </td>
