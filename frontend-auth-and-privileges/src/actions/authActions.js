@@ -1,162 +1,143 @@
 import axios from "axios";
-import {returnErrors} from "./errorActions";
+import { returnErrors } from "./errorActions";
 
 import {
-    GET_USERS_LOADED,
-    GET_USERS_LOADING,
-    GET_PRODUCTS_LOADED,
-    GET_PRODUCTS_LOADING,
-    USER_LOADED,
-    USER_LOADING,
-    AUTH_ERROR,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-    LOGOUT_SUCCESS,
-    SIGNUP_SUCCESS,
-    SIGNUP_FAIL
+  GET_USERS_LOADED,
+  GET_USERS_LOADING,
+  USER_LOADED,
+  USER_LOADING,
+  AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT_SUCCESS,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL
 } from "./types";
 
 // Get Users Employees
 export const getUsers = () => (dispatch, getState) => {
-    // Get Users Loading
-    dispatch({type: GET_USERS_LOADING});
-    axios
-        .get("/api/users", tokenConfig(getState))
-        .then(res =>
-            dispatch({
-                type: GET_USERS_LOADED,
-                payload: res.data
-            })
-        )
-        .catch(err =>
-            dispatch(returnErrors(err.response.data, err.response.status))
-        );
-};
-
-// Get products
-export const getProducts = () => (dispatch, getState) => {
-    // Get Users Loading
-    dispatch({type: GET_PRODUCTS_LOADING});
-    axios
-        .get("/api/products", tokenConfig(getState))
-        .then(res =>
-            dispatch({
-                type: GET_PRODUCTS_LOADED,
-                payload: res.data
-            })
-        )
-        .catch(err =>
-            dispatch(returnErrors(err.response.data, err.response.status))
-        );
+  // Get Users Loading
+  dispatch({ type: GET_USERS_LOADING });
+  axios
+    .get("/api/users", tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: GET_USERS_LOADED,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
 
 // Check token & load user
 export const loadUser = () => (dispatch, getState) => {
-    // User loading
-    dispatch({type: USER_LOADING});
+  // User loading
+  dispatch({ type: USER_LOADING });
 
-    axios
-        .get("/api/auth/user", tokenConfig(getState))
-        .then(res =>
-            dispatch({
-                type: USER_LOADED,
-                payload: res.data
-            })
-        )
-        .catch(err => {
-            dispatch(returnErrors(err.response.data, err.response.status));
-            dispatch({type: AUTH_ERROR});
-        });
+  axios
+    .get("/api/auth/user", tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({ type: AUTH_ERROR });
+    });
 };
 
 // Signup User
 export const signup = ({
-                           firstname,
-                           lastname,
-                           username,
-                           password
-                       }) => dispatch => {
-    // Headers
-    const config = {
-        headers: {
-            "Content-Type": "application/json"
-        }
-    };
+  firstname,
+  lastname,
+  username,
+  password
+}) => dispatch => {
+  // Headers
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
 
-    // Request body
-    const body = JSON.stringify({firstname, lastname, username, password});
+  // Request body
+  const body = JSON.stringify({ firstname, lastname, username, password });
 
-    axios
-        .post("/api/users", body, config)
-        .then(res =>
-            dispatch({
-                type: SIGNUP_SUCCESS,
-                payload: res.data
-            })
-        )
-        .catch(err => {
-            dispatch(
-                returnErrors(err.response.data, err.response.status, "SIGNUP_FAIL")
-            );
-            dispatch({
-                type: SIGNUP_FAIL
-            });
-        });
+  axios
+    .post("/api/users", body, config)
+    .then(res =>
+      dispatch({
+        type: SIGNUP_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "SIGNUP_FAIL")
+      );
+      dispatch({
+        type: SIGNUP_FAIL
+      });
+    });
 };
 
 // Login User
-export const login = ({username, password}) => dispatch => {
-    // Headers
-    const config = {
-        headers: {
-            "Content-Type": "application/json"
-        }
-    };
+export const login = ({ username, password }) => dispatch => {
+  // Headers
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
 
-    // Request body
-    const body = JSON.stringify({username, password});
+  // Request body
+  const body = JSON.stringify({ username, password });
 
-    axios
-        .post("/api/auth", body, config)
-        .then(res =>
-            dispatch({
-                type: LOGIN_SUCCESS,
-                payload: res.data
-            })
-        )
-        .catch(err => {
-            dispatch(
-                returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
-            );
-            dispatch({
-                type: LOGIN_FAIL
-            });
-        });
+  axios
+    .post("/api/auth", body, config)
+    .then(res =>
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
+      );
+      dispatch({
+        type: LOGIN_FAIL
+      });
+    });
 };
 
 // Logout User
 export const logout = () => {
-    return {
-        type: LOGOUT_SUCCESS
-    };
+  return {
+    type: LOGOUT_SUCCESS
+  };
 };
 
 // Setup config/headers and token
 export const tokenConfig = getState => {
-    // Get token from localStorage
-    const token = getState().auth.token;
+  // Get token from localStorage
+  const token = getState().auth.token;
 
-    // Headers
-    const config = {
-        headers: {
-            "Content-type": "application/json"
-        }
-    };
-
-    // If token, add to headers
-    if (token) {
-        config.headers["x-auth-token"] = token;
+  // Headers
+  const config = {
+    headers: {
+      "Content-type": "application/json"
     }
+  };
 
-    return config;
+  // If token, add to headers
+  if (token) {
+    config.headers["x-auth-token"] = token;
+  }
+
+  return config;
 };

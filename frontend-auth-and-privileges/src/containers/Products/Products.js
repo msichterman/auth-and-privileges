@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductsTable from "../../components/ProductsTable/ProductsTable";
 import UpdateProduct from "../../components/UpdateProduct/UpdateProduct";
 
-import { getProducts } from "../../actions/authActions";
+import { getProducts } from "../../actions/dataActions";
 
 import "./Products.css";
 
