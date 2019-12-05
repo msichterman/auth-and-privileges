@@ -12,6 +12,11 @@
   width: 100%;
 }
 
+.red-update-button {
+  background-color: #e43639 !important;
+  border-color: #e43639 !important;
+}
+
 .inputCol {
   width: 300px;
   padding: 5px;
