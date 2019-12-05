@@ -29,7 +29,7 @@ export default function UpdateProduct(props) {
             Product Name:
           </Label>
           <Input
-            type="string"
+            type="text"
             id="name"
             placeholder="Name"
             onChange={e => setName(e.target.value)}

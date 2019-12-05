@@ -62,10 +62,7 @@ export default function Products(props) {
         </tbody>
       </Table>
       {role === "Admin" ? (
-        <UpdateProduct
-          heading="Update Product Price & Quantity"
-          productProps={{ products, setProducts }}
-        />
+        <UpdateProduct heading="Update Product Price & Quantity" />
       ) : role === "Production Manager" ? (
         <UpdateProduct heading="Update Product Quantity" />
       ) : role === "Sales Manager" ? (
