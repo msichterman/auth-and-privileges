@@ -19,13 +19,18 @@ router.get("/", auth, (req, res) => {
 // @desc    Create A Product
 // @access  Private
 router.post("/", auth, (req, res) => {
-    const newProduct = new Product({
-        name: req.body.name,
-        price: req.body.price,
-        quantity: req.body.quantity
-    });
-
-    newProduct.save().then(product => res.json(product));
+    if(res.user.role === "Admin") {
+        const newProduct = new Product({
+            name: req.body.name,
+            price: req.body.price,
+            quantity: req.body.quantity
+        });
+        newProduct.save()
+            .then(product => { return res.json(product); })
+            .catch(error => { return res.status(400).json({ msg: "Couldn't create product" })})
+    } else {
+        return res.status(400).json({ msg: "Not Authorized to create product!" });
+    }
 });
 
 // @route   PUT api/products
@@ -34,13 +39,25 @@ router.post("/", auth, (req, res) => {
 router.put("/", auth, (req, res) => {
     let updatedParams = {};
     if (req.body.name) {
-        updatedParams.name = req.body.name;
+        if (req.user.role === "Admin") {
+            updatedParams.name = req.body.name;
+        } else {
+            return res.status(400).json({ msg: "Not authorized to change name."})
+        }
     }
     if (req.body.price) {
-        updatedParams.price = req.body.price;
+        if (req.user.role === "Admin" || req.user.role === "Sales Manager") {
+            updatedParams.price = req.body.price;
+        } else {
+            return res.status(400).json({ msg: "Not authorized to change price."})
+        }
     }
     if (req.body.quantity) {
-        updatedParams.quantity = req.body.quantity;
+        if (req.user.role === "Admin" || req.user.role === "Product Manager") {
+            updatedParams.quantity = req.body.quantity;
+        } else {
+            return res.status(400).json({ msg: "Not authorized to change quantity."})
+        }
     }
     Product.findOneAndUpdate(
         {name: req.body.name},
@@ -51,11 +68,13 @@ router.put("/", auth, (req, res) => {
         {new: true, useFindAndModify: false}
     ).then(product => {
         if (product) {
-            res.json(product)
+            return res.json(product)
         } else {
-            res.json({msg: "Couldn't find product."});
+            return res.status(400).json({ msg: "Couldn't find product." });
         }
-    });
+    }).catch(error => {
+        return res.status(400).json({ msg: "Couldn't update product." });
+    })
 });
 
 module.exports = router;
