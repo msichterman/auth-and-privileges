@@ -31,7 +31,9 @@ export default function Dashboard() {
   }, []);
 
   function onLoad() {
-    dispatch(getUsers());
+    if (role === "Admin" || "Production Manager" || "Sales Manager") {
+      dispatch(getUsers());
+    }
 
     setIsPopulating(false);
   }
