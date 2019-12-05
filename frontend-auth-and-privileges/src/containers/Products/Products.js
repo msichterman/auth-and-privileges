@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import ProductsTable from "../../components/ProductsTable/ProductsTable";
 
-import { getProducts } from "../../actions/authActions";
+import { getProducts } from "../../actions/dataActions";
 
 import "./Products.css";
 
