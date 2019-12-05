@@ -4,6 +4,9 @@ const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const auth = require("../../middleware/auth");
+const isAdmin = require("../../middleware/adminAuth");
+const isSalesManager = require("../../middleware/salesManagerAuth");
+const isProductManager = require("../../middleware/productManagerAuth");
 
 // User Model
 const User = require("../../models/User");
@@ -52,28 +55,6 @@ router.post("/", (req, res) => {
   });
 });
 
-// @route   PUT api/auth
-// @desc    Update A User's Role & Salary (as an Admin?)
-// @access  Private
-router.put("/", auth, (req, res) => {
-  // TODO: Add checks for roles
-  User.findOneAndUpdate(
-    { username: req.body.usrname },
-    {
-      $set: {
-        role: req.body.role,
-        salary: req.body.salary
-      }
-    },
-    // new option returns updated object
-    { new: true, useFindAndModify: false }
-  )
-    .select("-password")
-    .then(user => {
-      res.json(user);
-    });
-});
-
 // @route   GET api/auth/user
 // @desc    Get user data
 // @access  Private
@@ -82,5 +63,7 @@ router.get("/user", auth, (req, res) => {
     .select("-password")
     .then(user => res.json(user));
 });
+
+
 
 module.exports = router;
