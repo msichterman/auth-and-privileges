@@ -19,7 +19,7 @@ router.get("/", auth, (req, res) => {
 // @desc    Create A Product
 // @access  Private
 router.post("/", auth, (req, res) => {
-  if (res.user.role === "Admin") {
+  if (req.user.role === "Admin") {
     const newProduct = new Product({
       name: req.body.name,
       price: req.body.price,
