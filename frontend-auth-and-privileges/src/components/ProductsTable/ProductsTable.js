@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Table, Spinner } from "reactstrap";
 import { useSelector } from "react-redux";
 
@@ -32,7 +32,7 @@ export default function ProductsTable(props) {
         <tbody>
           {products.map(product => {
             return (
-              <tr>
+              <tr key={product.name}>
                 <td>{product.name}</td>
                 <td>{product.quantity}</td>
                 <td>${product.price}</td>

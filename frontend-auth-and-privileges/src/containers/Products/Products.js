@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Jumbotron, Container } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,7 +18,7 @@ export default function Products() {
 
   useEffect(() => {
     onLoad();
-  }, []);
+  });
 
   async function onLoad() {
     dispatch(getProducts());

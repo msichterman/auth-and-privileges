@@ -11,16 +11,17 @@ export default function UpdateProduct(props) {
 
   const dispatch = useDispatch();
   const loading = useSelector(state => state.data.loading);
+  const role = useSelector(state => state.auth.user.role);
 
   async function handleSubmit() {
     let params = {};
     if(name) {
       params.name = name
     }
-    if(updatedPrice != 0) {
+    if(updatedPrice !== 0) {
       params.price = updatedPrice
     }
-    if(updatedQuanity != 0) {
+    if(updatedQuanity !== 0) {
       params.quantity = updatedQuanity
     }
     dispatch(updateProduct(params))
@@ -45,36 +46,35 @@ export default function UpdateProduct(props) {
               onChange={e => setName(e.target.value)}
             />
           </FormGroup>
-
-          <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-            <Label for="price" className="mr-sm-2">
-              Price:
-            </Label>
-            {"$"}
-            <Input
-              type="number"
-              min="0.00"
-              step="0.01"
-              id="price"
-              placeholder="0.00"
-              onChange={e => updatePrice(e.target.value)}
-            />
-          </FormGroup>
-
-          <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-            <Label for="quanity" className="mr-sm-2">
-              Quanity:
-            </Label>
-            {"$"}
-            <Input
-              type="number"
-              min="0"
-              id="quanity"
-              placeholder="0"
-              onChange={e => updateQuanity(e.target.value)}
-            />
-          </FormGroup>
-
+          {role === "Admin" || role === "Production Manager" ?
+              <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                <Label for="quanity" className="mr-sm-2">
+                  Quanity:
+                </Label>
+                <Input
+                    type="number"
+                    min="0"
+                    id="quanity"
+                    placeholder="0"
+                    onChange={e => updateQuanity(e.target.value)}
+                />
+              </FormGroup> : <></>
+          }
+          {role === "Admin" || role === "Sales Manager" ?
+              <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                <Label for="price" className="mr-sm-2">
+                  Price:
+                </Label>
+                {"$"}
+                <Input
+                    type="number"
+                    min="0.00"
+                    step="0.01"
+                    id="price"
+                    placeholder="0.00"
+                    onChange={e => updatePrice(e.target.value)}
+                />
+              </FormGroup> : <></>}
         <Button
             id="red-button"
             onClick={() => handleSubmit()}

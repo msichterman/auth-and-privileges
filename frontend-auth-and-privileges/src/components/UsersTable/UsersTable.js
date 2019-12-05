@@ -8,7 +8,6 @@ export default function UsersTable(props) {
   // Maps Redux store state to props
   const loading = useSelector(state => state.data.loading);
   const users = useSelector(state => state.data.users);
-  const error = useSelector(state => state.error);
 
   return loading ? (
     <div>
@@ -29,7 +28,7 @@ export default function UsersTable(props) {
         <tbody>
           {users.map(user => {
             return (
-              <tr>
+              <tr key={user.username}>
                 <td>{user.firstname + " " + user.lastname}</td>
                 <td>{user.username}</td>
                 <td>{user.role}</td>
