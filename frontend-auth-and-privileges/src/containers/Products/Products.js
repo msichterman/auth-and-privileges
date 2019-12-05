@@ -41,7 +41,7 @@ export default function Products() {
       ) : role === "Production Manager" ? (
         <UpdateProduct heading="Update Product Quantity" />
       ) : role === "Sales Manager" ? (
-        <UpdateProduct heading="Update Product Quantity" />
+        <UpdateProduct heading="Update Product Price" />
       ) : (
         <></>
       )}

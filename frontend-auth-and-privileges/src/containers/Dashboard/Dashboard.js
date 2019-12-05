@@ -10,7 +10,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import UsersTable from "../../components/UsersTable/UsersTable";
 import UpdateUser from "../../components/UpdateUser/UpdateUser";
-import { getUsers } from "../../actions/authActions";
+import { getUsers } from "../../actions/dataActions";
 import { clearErrors } from "../../actions/errorActions";
 import "./Dashboard.css";
 
