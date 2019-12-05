@@ -42,6 +42,15 @@ export const getProducts = () => (dispatch, getState) => {
         );
 };
 
+export const updateUser = (params) => (dispatch, getState) => {
+    axios
+        .put("/api/users", params, tokenConfig(getState))
+        .then(res => dispatch(getUsers()))
+        .catch(err =>
+            dispatch(returnErrors(err.response.data, err.response.status))
+        );
+};
+
 export const updateProduct = (params) => (dispatch, getState) => {
     axios
         .put("/api/products", params, tokenConfig(getState))
