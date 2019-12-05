@@ -1,8 +1,7 @@
 // Product Types
 export const GET_PRODUCTS_LOADING = "GET_PRODUCTS_LOADING";
 export const GET_PRODUCTS_LOADED = "GET_PRODUCTS_LOADED";
-export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
-export const PRODUCTS_LOADING = "PRODUCTS_LOADING";
+export const UPDATE_PRODUCT_EDITING = "UPDATE_PRODUCT_EDITING";
 
 // Auth Types
 export const USER_LOADING = "USER_LOADING";
@@ -18,7 +17,7 @@ export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAIL = "SIGNUP_FAIL";
 export const GET_USERS_LOADING = "GET_USERS_LOADING";
 export const GET_USERS_LOADED = "GET_USERS_LOADED";
-export const UPDATE_USER = "UPDATE_USER";
+export const UPDATE_USER_EDITING = "UPDATE_USER_EDITING";
 
 // Error Types
 export const GET_ERRORS = "GET_ERRORS";
