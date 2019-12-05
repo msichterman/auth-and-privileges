@@ -8,8 +8,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
-  REGISTER_SUCCESS,
-  REGISTER_FAIL
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL
 } from "./types";
 
 // // Check token & load user
@@ -31,35 +31,40 @@ import {
 //     });
 // };
 
-// // Register User
-// export const register = ({ name, username, password }) => dispatch => {
-//   // Headers
-//   const config = {
-//     headers: {
-//       "Content-Type": "application/json"
-//     }
-//   };
+// Signup User
+export const signup = ({
+  firstname,
+  lastname,
+  username,
+  password
+}) => dispatch => {
+  // Headers
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
 
-//   // Request body
-//   const body = JSON.stringify({ name, username, password });
+  // Request body
+  const body = JSON.stringify({ firstname, lastname, username, password });
 
-//   axios
-//     .post("/api/users", body, config)
-//     .then(res =>
-//       dispatch({
-//         type: REGISTER_SUCCESS,
-//         payload: res.data
-//       })
-//     )
-//     .catch(err => {
-//       dispatch(
-//         returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
-//       );
-//       dispatch({
-//         type: REGISTER_FAIL
-//       });
-//     });
-// };
+  axios
+    .post("/api/users", body, config)
+    .then(res =>
+      dispatch({
+        type: SIGNUP_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "SIGNUP_FAIL")
+      );
+      dispatch({
+        type: SIGNUP_FAIL
+      });
+    });
+};
 
 // Login User
 
