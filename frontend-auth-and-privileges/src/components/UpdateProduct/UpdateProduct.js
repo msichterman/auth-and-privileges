@@ -24,7 +24,10 @@ export default function UpdateProduct(props) {
     if(updatedQuanity !== 0) {
       params.quantity = updatedQuanity
     }
-    dispatch(updateProduct(params))
+    dispatch(updateProduct(params));
+    setName(null);
+    updatePrice(0);
+    updateQuanity(0);
   }
 
   return (

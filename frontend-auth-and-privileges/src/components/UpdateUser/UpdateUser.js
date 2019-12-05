@@ -12,20 +12,22 @@ export default function UpdateUser(props) {
 
   const dispatch = useDispatch();
   const loading = useSelector(state => state.data.loading);
-  const role = useSelector(state => state.auth.user.role);
 
   async function handleSubmit() {
     let params = {};
     if(username) {
       params.username = username
     }
-    if(updatedRole !== 0) {
+    if(updatedRole !== null) {
       params.role = updatedRole
     }
     if(updatedSalary !== 0) {
       params.salary = updatedSalary
     }
-    dispatch(updateUser(params))
+    dispatch(updateUser(params));
+    setUsername(null);
+    updateRole(null);
+    updateSalary(0);
   }
 
   return (

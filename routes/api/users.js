@@ -121,10 +121,7 @@ router.put("/", auth, (req, res) => {
     User.findOneAndUpdate(
       queryString,
       {
-        $set: {
-          role: req.body.role,
-          salary: req.body.salary
-        }
+        $set: updatedFields
       },
       // new option returns updated object
       { new: true, useFindAndModify: false }
