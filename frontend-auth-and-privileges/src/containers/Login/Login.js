@@ -57,7 +57,7 @@ export default function Login(appProps) {
         dispatch(clearErrors());
       }
     }
-  });
+  }, [error, prevError, isAuthenticated, dispatch]);
 
   function handleSubmit(event) {
     event.preventDefault();

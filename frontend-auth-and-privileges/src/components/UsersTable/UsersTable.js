@@ -31,8 +31,16 @@ export default function UsersTable(props) {
               <tr key={user.username}>
                 <td>{user.firstname + " " + user.lastname}</td>
                 <td>{user.username}</td>
-                <td>{user.role}</td>
-                <td>${user.salary}</td>
+                <td>
+                  {user.role === "User"
+                    ? "Waiting for account confirmation..."
+                    : user.role}
+                </td>
+                <td>
+                  {user.salary === 0
+                    ? "Waiting for account confirmation..."
+                    : "$" + user.salary}
+                </td>
               </tr>
             );
           })}

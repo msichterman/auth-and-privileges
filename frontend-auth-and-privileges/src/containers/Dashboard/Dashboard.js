@@ -31,7 +31,11 @@ export default function Dashboard() {
   }, []);
 
   function onLoad() {
-    if (role === "Admin" || "Production Manager" || "Sales Manager") {
+    if (
+      role === "Admin" ||
+      role === "Production Manager" ||
+      role === "Sales Manager"
+    ) {
       dispatch(getUsers());
     }
 

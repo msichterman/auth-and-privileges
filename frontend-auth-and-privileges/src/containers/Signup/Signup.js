@@ -59,7 +59,7 @@ export default function Signup(appProps) {
         dispatch(clearErrors());
       }
     }
-  });
+  }, [error, prevError, isAuthenticated, dispatch]);
 
   async function handleSubmit(event) {
     event.preventDefault();
