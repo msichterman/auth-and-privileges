@@ -5,8 +5,6 @@ import { useSelector } from "react-redux";
 import "./UsersTable.css";
 
 export default function UsersTable(props) {
-  const [usersLoading, setUsersLoading] = useState(true);
-
   // Maps Redux store state to props
   const loading = useSelector(state => state.auth.loading);
   const users = useSelector(state => state.auth.users);
