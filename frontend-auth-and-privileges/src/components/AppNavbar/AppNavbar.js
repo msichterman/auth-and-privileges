@@ -9,25 +9,27 @@ import {
   NavLink
 } from "reactstrap";
 import { NavLink as Link, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../actions/authActions";
 
 import "./AppNavbar.css";
 
-export default function AppNavbar({ authProps }) {
+export default function AppNavbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
+
+  // Access to router history
   let history = useHistory();
 
-  const { isAuthenticated, userHasAuthenticated } = authProps;
-  const [isOpen, setIsOpen] = useState(false);
+  // Maps Redux store state to props
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
-  const toggle = () => setIsOpen(!isOpen);
+  // Allows us to use the store's dispatch
+  const dispatch = useDispatch();
 
   async function handleLogout() {
     // Signs the user out by clearing the local storage
-    // await Auth.signOut();
-
-    // Resets the state values
-    userHasAuthenticated(false);
-    // userIsConfirmed(false);
-    // setUser({});
+    dispatch(logout());
 
     // Sends the application to the login page
     history.push("/login");

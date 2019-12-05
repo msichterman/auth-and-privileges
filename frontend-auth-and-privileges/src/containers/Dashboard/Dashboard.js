@@ -13,7 +13,7 @@ import UsersTable from "../../components/UsersTable/UsersTable";
 import "./Dashboard.css";
 
 export default function Dashboard(appProps) {
-  const { salary, fullName, role } = appProps;
+  // const { salary, fullName, role } = appProps;
 
   return (
     <div>
@@ -32,23 +32,23 @@ export default function Dashboard(appProps) {
         <div className="py-3 rounded toast-min">
           <Toast>
             <ToastHeader>Name</ToastHeader>
-            <ToastBody>{fullName}</ToastBody>
+            <ToastBody>{}</ToastBody>
           </Toast>
         </div>
         <div className="py-3 rounded toast-min">
           <Toast>
             <ToastHeader>Role</ToastHeader>
-            <ToastBody>{role}</ToastBody>
+            <ToastBody>{}</ToastBody>
           </Toast>
         </div>
         <div className="py-3 rounded toast-min">
           <Toast>
             <ToastHeader>Salary</ToastHeader>
-            <ToastBody>${salary}</ToastBody>
+            <ToastBody>${}</ToastBody>
           </Toast>
         </div>
       </Row>
-      {role === "Admin" ? (
+      {/* {role === "Admin" ? (
         <UsersTable heading="Manage All Users" />
       ) : role === "Production Manager" ? (
         <UsersTable heading="Manage All Production Employees" />
@@ -56,7 +56,7 @@ export default function Dashboard(appProps) {
         <UsersTable heading="Manage All Sales Employees" />
       ) : (
         <></>
-      )}
+      )} */}
     </div>
   );
 }
