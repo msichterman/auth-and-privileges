@@ -26,14 +26,14 @@ We created a web application that integrates basic security protocols such as au
   * [redux](https://redux.js.org/) for managing global state.
   * [react-redux](https://react-redux.js.org/) for official React bindings in Redux.
   * [redux-thunk](https://www.npmjs.com/package/redux-thunk) for Thunk middleware in Redux.
-  * [axios](https://www.npmjs.com/package/axios) for sending asynchronous HTTP requests to API endpoints and perform CRUD operations.
+  * [axios](https://www.npmjs.com/package/axios) for sending asynchronous HTTP requests to API endpoints and performing CRUD operations.
   
 * N - [Node.js](https://nodejs.org/), an asynchronous event-driven JavaScript runtime designed to build scalable network applications.
   * [jsonwebtokens](https://www.npmjs.com/package/jsonwebtoken) for implementing JSON Web Tokens.
   * [bcrypt](https://www.npmjs.com/package/bcrypt) for hashing passwords.
 
 ## Getting Started
-In order to get started developing, you'll need to do a few things first.
+In order to use the application locally, you'll need to do a few things first.
 
 1. Clone this repository and cd into the repository's directory
 ```
@@ -55,7 +55,7 @@ sudo npm install && npm run client-install
 npm run dev
 ```
 
-4. Head over to [http://localhost:3000](http://localhost:3000) to see your app live!
+4. Head over to [http://localhost:3000](http://localhost:3000) to see the application live!
 
 ## File Structure
 
@@ -111,7 +111,7 @@ npm run dev
     └── server.js                                       # Defines backend MongoDB connection, routes, and port
 
 ## References
-* [Serverless Stack](https://serverless-stack.com/#table-of-contents) helped with implementing the React frontend including functional components, hooks, authenticated routing and overall frontend architecture.
+* [Serverless Stack](https://serverless-stack.com/#table-of-contents) helped with implementing the React frontend including functional components, hooks, authenticated routing, and overall frontend structure.
 * Brad Traversy's "Learn The MERN Stack" series on YouTube, which guided the development of the overall full-stack application.
     * [Learn The MERN Stack - YouTube Series](https://www.youtube.com/playlist?list=PLillGF-RfqbbiTGgA77tGO426V3hRF9iE)
     * ["MERN Shopping List" Application - GitHub Repository](https://github.com/bradtraversy/mern_shopping_list)
