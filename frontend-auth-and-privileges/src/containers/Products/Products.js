@@ -24,9 +24,7 @@ export default function Products() {
     <div className="mt-4 border-top border-bottom" id="table-border-width">
       <ProductsTable />
       {role === "Admin" ? (
-        <UpdateProduct
-          heading="Update Product Price & Quantity"
-        />
+        <UpdateProduct heading="Update Product Price & Quantity" />
       ) : role === "Production Manager" ? (
         <UpdateProduct heading="Update Product Quantity" />
       ) : role === "Sales Manager" ? (
