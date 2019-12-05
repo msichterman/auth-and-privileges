@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
 
 import UpdateProduct from "../../components/UpdateProduct/UpdateProduct";
 
@@ -8,6 +9,13 @@ import "./Products.css";
 export default function Products(props) {
   const [productsLoading, setProductsLoading] = useState(true);
   const [products, setProducts] = useState([]);
+
+  // Maps Redux store state to props
+  const role = useSelector(state => state.auth.user.role);
+  const error = useSelector(state => state.error);
+
+  // Allows us to use the store's dispatch
+  const dispatch = useDispatch();
 
   useEffect(() => {
     onLoad();
@@ -36,7 +44,6 @@ export default function Products(props) {
       <Table striped>
         <thead>
           <tr>
-            <th>ID #</th>
             <th>Name</th>
             <th>Price</th>
             <th>Quanity</th>
@@ -46,7 +53,6 @@ export default function Products(props) {
           {products.map(product => {
             return (
               <tr>
-                <td>#{product.id}</td>
                 <td>{product.name}</td>
                 <td>${product.price}</td>
                 <td>{product.quanity}</td>
@@ -55,14 +61,14 @@ export default function Products(props) {
           })}
         </tbody>
       </Table>
-      {props.role === "Admin" ? (
+      {role === "Admin" ? (
         <UpdateProduct
           heading="Update Product Price & Quantity"
           productProps={{ products, setProducts }}
         />
-      ) : props.role === "Production Manager" ? (
+      ) : role === "Production Manager" ? (
         <UpdateProduct heading="Update Product Quantity" />
-      ) : props.role === "Sales Manager" ? (
+      ) : role === "Sales Manager" ? (
         <UpdateProduct heading="Update Product Quantity" />
       ) : (
         <></>

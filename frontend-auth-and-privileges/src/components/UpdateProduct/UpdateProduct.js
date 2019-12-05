@@ -6,14 +6,14 @@ import updateProduct from "../../containers/Products/Products";
 import "./UpdateProduct.css";
 
 export default function UpdateProduct(props) {
-  const [productId, setProductId] = useState(0);
+  const [name, setName] = useState(null);
   const [updatedPrice, updatePrice] = useState(0.0);
   const [updatedQuanity, updateQuanity] = useState(0);
 
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleSubmit(event) {
-    updateProduct(productId, updatedPrice, updatedQuanity);
+    updateProduct(name, updatedPrice, updatedQuanity);
   }
 
   return (
@@ -25,15 +25,14 @@ export default function UpdateProduct(props) {
         onSubmit={handleSubmit}
       >
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-          <Label for="productId" className="mr-sm-2">
-            Product ID #:
+          <Label for="name" className="mr-sm-2">
+            Product Name:
           </Label>
           <Input
-            type="number"
-            id="productId"
-            min="0"
-            placeholder="0"
-            onChange={e => setProductId(e.target.value)}
+            type="string"
+            id="name"
+            placeholder="Name"
+            onChange={e => setName(e.target.value)}
           />
         </FormGroup>
 
