@@ -1,5 +1,9 @@
 # Auth and Privileges - Mock Office Furniture Business Platform
 
+<p align="center">
+  <img src="./frontend-auth-and-privileges/public/safe.svg" alt="Auth and Privileges illustration" width="500px">
+</p>
+
 ## Application Description
 We created a web application that integrates basic security protocols such as authentication, authorization, and user privileges. The application is essentially a simple business application for a business that produces and sells office furniture. The user roles and privileges are setup like so:
 
@@ -13,8 +17,8 @@ We created a web application that integrates basic security protocols such as au
 | User | n/a | View only | Default role on sign up, needs confirmation for role and salary from an Admin |
 
 
-## What's Being Used?
-### Technology Stack - MERN
+## What Technologies are Being Used?
+### Full-Stack JavaScript - MERN Stack
 * M - [MongoDB](https://www.mongodb.com/), a general purpose, document-based, distributed database.
   * [Mongoose](https://mongoosejs.com/) for elegant mongodb object modeling for Node.js.
   
