@@ -8,7 +8,7 @@
 We created a web application that integrates basic security protocols such as authentication, authorization, and user privileges. The application is essentially a simple business application for a business that produces and sells office furniture. The user roles and privileges are setup like so:
 
 | Role | Dashboard Privileges | Product Privileges | Additional Notes |
-| --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: |
 | Admin | Manage all users | Manage both price and quanity | n/a |
 | Production Manager | Manage Production Employees | Manage quanity | n/a |
 | Production Employee | n/a | View only | n/a |
