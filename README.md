@@ -34,7 +34,7 @@ We created a web application that integrates basic security protocols such as au
   
 * N - [Node.js](https://nodejs.org/), an asynchronous event-driven JavaScript runtime designed to build scalable network applications.
   * [jsonwebtokens](https://www.npmjs.com/package/jsonwebtoken) for implementing JSON Web Tokens.
-  * [bcrypt](https://www.npmjs.com/package/bcrypt) for hashing passwords.
+  * [bcrypt](https://www.npmjs.com/package/bcryptjs) for hashing passwords.
 
 ## Getting Started
 In order to use the application locally, you'll need to do a few things first.
