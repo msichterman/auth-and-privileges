@@ -8,7 +8,7 @@
 We created a web application that integrates basic security protocols such as authentication, authorization, and user privileges. The application is essentially a simple business application for a business that produces and sells office furniture. The user roles and privileges are setup like so:
 
 | Role | Dashboard Privileges | Product Privileges | Additional Notes |
-| --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: |
 | Admin | Manage all users | Manage both price and quanity | n/a |
 | Production Manager | Manage Production Employees | Manage quanity | n/a |
 | Production Employee | n/a | View only | n/a |
@@ -67,52 +67,52 @@ npm run dev
     ├── ...
     │
     ├── config/                                 
-    │   └── default.json                                # Info such as MongoDB URI and JWT Secret
+    │   └── default.json                            # Info such as MongoDB URI and JWT Secret
     │
-    ├── frontend-auth-and-privileges/                   # The entire React frontend application
+    ├── frontend-auth-and-privileges/               # The entire React frontend application
     │   ├── ...
     │   │
-    │   ├── public/                                     # Stores assets like images and fonts
+    │   ├── public/                                 # Stores assets like images and fonts
     │   │   ├── ...
-    │   │   └── index.html                              # The overall page template
+    │   │   └── index.html                          # The overall page template
     │   │
     │   └── src/
-    │       ├── index.js                                # The JavaScript entry point
+    │       ├── index.js                            # The JavaScript entry point
     │       ├── ...
-    │       ├── Routes.js                               # Defines all of the frontend routes                            
-    │       ├── store.js                                # Sets up the Redux store
+    │       ├── Routes.js                           # Defines all of the frontend routes                            
+    │       ├── store.js                            # Sets up the Redux store
     │       │
-    │       ├── components/                             # Any component featured within a container
+    │       ├── components/                         # Any component featured within a container
     │       │   └── ...
     │       │
-    │       ├── containers/                             # Makes up the pages
+    │       ├── containers/                         # Makes up the pages
     │       │   └── ...
     │       │
-    │       ├── actions/                                # Redux actions
+    │       ├── actions/                            # Redux actions
     │       │   ├── ...
-    │       │   └── types.js                            # Defines all the types of actions
+    │       │   └── types.js                        # Defines all the types of actions
     │       │
-    │       ├── reducers/                               # Redux reducers
+    │       ├── reducers/                           # Redux reducers
     │       │   ├── ...
-    │       │   └── index.js                            # Combines all of the reducers
+    │       │   └── index.js                        # Combines all of the reducers
     │       │
     │       └── utils/
-    │           ├── custom-hooks.js                     # Any custom hooks
+    │           ├── custom-hooks.js                 # Any custom hooks
     │           │
-    │           └── CustomRoutes/                      # The custom route components that help with routing and redirects
+    │           └── CustomRoutes/                   # The custom route components that help with routing and redirects
     │               └── ...
     │
-    ├── middleware/                                     # Middleware for the APIs
+    ├── middleware/                                 # Middleware for the APIs
     │   └── ...
     │
-    ├── models/                                         # MongoDB models defined by schemas
+    ├── models/                                     # MongoDB models defined by schemas
     │   └── ...
     │
     ├── routes/
-    │   └── api/                                        # Defines ExpressJS API endpoints 
+    │   └── api/                                    # Defines ExpressJS API endpoints 
     │       └── ...
     │
-    └── server.js                                       # Defines backend MongoDB connection, routes, and port
+    └── server.js                                   # Defines backend MongoDB connection, routes, and port
 
 ## References
 * [Serverless Stack](https://serverless-stack.com/#table-of-contents) helped with implementing the React frontend including functional components, hooks, authenticated routing, and overall frontend structure.
