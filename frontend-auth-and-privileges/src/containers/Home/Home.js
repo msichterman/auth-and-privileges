@@ -11,7 +11,7 @@ export default function Home() {
         <img
           src="../.././safe.svg"
           alt="Webpages with lock symbol"
-          width="400px"
+          width="40%"
           className="m-5"
         />
         <p className="px-5">
