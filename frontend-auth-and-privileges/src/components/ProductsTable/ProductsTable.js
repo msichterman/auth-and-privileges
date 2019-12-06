@@ -70,7 +70,9 @@ export default function ProductsTable(props) {
                   <td className="inputCol">
                     <Input
                       className="input"
-                      type="text"
+                      type="number"
+                      min={0}
+                      step="1"
                       id="quantity"
                       placeholder={product.quantity}
                       onChange={e => updateQuantity(e.target.value)}
@@ -84,7 +86,9 @@ export default function ProductsTable(props) {
                   <td className="inputCol">
                     <Input
                       className="input"
-                      type="text"
+                      type="number"
+                      min={0.0}
+                      step="0.01"
                       id="price"
                       placeholder={product.price}
                       onChange={e => updatePrice(e.target.value)}

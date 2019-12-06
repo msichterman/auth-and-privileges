@@ -46,13 +46,16 @@ export default function Dashboard() {
       <div>
         <Jumbotron fluid className="bg-dark text-light">
           <Container fluid>
-            <h1 className="display-5">Welcome to your dashboard!</h1>
+            <h1 className="dash-text mb-5">Office Furniture Factory, LLC</h1>
+            <h2 className="display-5 mb-3">Welcome to your dashboard!</h2>
             <p className="lead">
               See your information below including name, role and current
               salary.
             </p>
             <p className="font-weight-lighter">
-              <small>Navigate using the navigation links above!</small>
+              <small>
+                Edit the employees you manage below (if applicable).
+              </small>
             </p>
           </Container>
         </Jumbotron>

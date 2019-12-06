@@ -83,7 +83,9 @@ export default function UsersTable(props) {
                   <td className="inputCol">
                     <Input
                       className="input"
-                      type="text"
+                      type="number"
+                      min={0}
+                      step="1"
                       id="salary"
                       placeholder={user.salary}
                       onChange={e => updateSalary(e.target.value)}
