@@ -1,4 +1,4 @@
-# Auth and Privileges - Mock Office Furniture Business Platform
+# Auth and Privileges - "Office Furniture Factory, LLC" Mock Business Platform
 
 <p align="center">
   <img src="./frontend-auth-and-privileges/public/safe.svg" alt="Auth and Privileges illustration" width="500px">
