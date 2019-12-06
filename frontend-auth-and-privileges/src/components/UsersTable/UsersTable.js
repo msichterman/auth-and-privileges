@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table, Spinner, Button, Input } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser, updateUserEditing } from "../../actions/dataActions";
@@ -14,6 +14,14 @@ export default function UsersTable(props) {
   const userEditing = useSelector(state => state.data.userEditing);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Called on component unmount, closes the "editing" fields
+    return () => {
+      dispatch(updateUserEditing(null));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function handleSubmit(username) {
     let params = {};

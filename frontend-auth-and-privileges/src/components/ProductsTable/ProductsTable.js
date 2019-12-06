@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table, Spinner, Button, Input } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,6 +16,14 @@ export default function ProductsTable(props) {
   const role = useSelector(state => state.auth.user.role);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Called on component unmount, closes the "editing" fields
+    return () => {
+      dispatch(updateProductEditing(null));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function handleSubmit(name) {
     let params = {};
