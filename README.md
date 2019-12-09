@@ -9,8 +9,8 @@ We created a web application that integrates basic security protocols such as au
 
 | Role | Dashboard Privileges | Product Privileges | Additional Notes |
 | :---: | :---: | :---: | :---: |
-| Admin | Manage all users | Manage both price and quanity | n/a |
-| Production Manager | Manage Production Employees | Manage quanity | n/a |
+| Admin | Manage all users | Manage both price and quantity | n/a |
+| Production Manager | Manage Production Employees | Manage quantity | n/a |
 | Production Employee | n/a | View only | n/a |
 | Sales Manager | Manage Sales Employees | Manage price | n/a |
 | Sales Employee | n/a | View only | n/a |
